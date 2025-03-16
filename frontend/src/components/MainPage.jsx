@@ -31,17 +31,17 @@ const FullScreenOverlay = () => {
 };
 
 const HeroSection = () => (
-  <section className="relative bg-black text-white text-center min-h-screen flex flex-col items-center justify-center py-28">
+  <section className="relative bg-black text-white text-center py-28 pt-36">
     {/* Background Animation */}
     <div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-gradient" />
 
-    {/* Animated Heading with Reduced Top Padding */}
-    <motion.h1 {...fadeInUp} className="text-7xl font-bold mb-4 pt-10">
+    {/* Animated Heading with Padding */}
+    <motion.h1 {...fadeInUp} className="text-7xl font-bold mb-4 pt-20">
       CyberX
     </motion.h1>
-
-    {/* Animated Description with Reduced Top Padding */}
-    <motion.p {...fadeInUp} transition={{ delay: 0.2 }} className="text-xl mb-8 pt-2">
+    
+    {/* Animated Description with Padding */}
+    <motion.p {...fadeInUp} transition={{ delay: 0.2 }} className="text-xl mb-8 pt-4">
       Comprehensive vulnerability scanning and threat intelligence at your fingertips.
     </motion.p>
 
@@ -49,7 +49,10 @@ const HeroSection = () => (
     <motion.div {...fadeInUp} transition={{ delay: 0.4 }} className="relative z-10">
       <div className="flex items-center justify-center">
         <div className="relative group">
-          <button className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-110 active:scale-95">
+          <Link
+            to="/Login" // Link to the login page
+            className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-110 active:scale-95"
+          >
             <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             <span className="relative z-10 block px-10 py-6 rounded-xl bg-gray-950">
               <div className="relative z-10 flex items-center space-x-2">
@@ -59,7 +62,7 @@ const HeroSection = () => (
                 </svg>
               </div>
             </span>
-          </button>
+          </Link>
         </div>
       </div>
     </motion.div>
