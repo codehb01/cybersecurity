@@ -103,11 +103,13 @@ const LoginPage = ({ onLogin }) => {
             className="w-full px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
           />
           <button
-            type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
-          >
-            Login
-          </button>
+  type="submit"
+  className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-102
+             hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 shadow-md hover:shadow-lg hover:shadow-purple-400/30"
+>
+  Login
+</button>
+
         </form>
         <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
           Don't have an account?{" "}
