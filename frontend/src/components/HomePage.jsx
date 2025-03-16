@@ -10,18 +10,16 @@ export default function HomePage() {
       {/* Background Animation */}
       <div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-gradient" />
 
-{/* Hero Section: Title with White Text, White Border & 50% Opacity */}
-<h1
-  className="text-5xl font-extrabold text-center mb-4 tracking-wide animate-fadeInDown"
-  style={{
-    color: "rgba(255, 255, 255, 0.5)", // White text with 50% opacity
-    //WebkitTextStroke: "1px rgba(255, 255, 255, 0.5)", // White border with 50% opacity
-  }}
->
-  Cyber Threat & Web Security Platform
-</h1>
-
-
+      {/* Hero Section: Title with White Text, White Border & 50% Opacity */}
+        <h1
+          className="text-5xl font-extrabold text-center mb-4 tracking-wide animate-fadeInDown"
+          style={{
+          color: "rgba(255, 255, 255, 0.5)", // White text with 50% opacity
+          //WebkitTextStroke: "1px rgba(255, 255, 255, 0.5)", // White border with 50% opacity
+        }}
+        >
+          Cyber Threat & Web Security Platform
+        </h1>
 
       {/* Hero Section: Subtitle */}
       <p className="text-lg text-center mb-6 max-w-2xl text-gray-300 animate-fadeInUp animation-delay-300">
@@ -37,7 +35,7 @@ export default function HomePage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Enter website URL..."
-          className="w-full p-4 text-lg text-gray-900 rounded-lg shadow-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400"
+          className="w-full p-4 text-lg text-white rounded-lg shadow-md border border-black focus:outline-none focus:ring-2 focus:ring-green-400"
         />
 
         {/* Scan Button */}

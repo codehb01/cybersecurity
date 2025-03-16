@@ -19,7 +19,7 @@ const Navbar = ({ user, setDarkMode, darkMode, handleLogout }) => {
   };
 
   return (
-    <nav className="bg-white dark:bg-gray-900 shadow-lg rounded-xl m-4 p-4 fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-7xl z-50">
+    <nav className="bg-white/50 dark:bg-gray-900/50 border border-gray-300 dark:border-gray-700 shadow-lg rounded-xl backdrop-blur-lg m-4 p-4 fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-7xl z-50">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <Link to="/">
@@ -69,7 +69,7 @@ const Navbar = ({ user, setDarkMode, darkMode, handleLogout }) => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden mt-4 flex flex-col space-y-2 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-md">
+        <div className="md:hidden mt-4 flex flex-col space-y-2 bg-white/50 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 backdrop-blur-lg rounded-lg p-4 shadow-md">
           <NavLink href="/" label="Home" icon={<Home size={18} />} onClick={closeMenu} />
           <NavLink href="/search" label="Search" icon={<Search size={18} />} onClick={closeMenu} />
           <NavLink href="/settings" label="Settings" icon={<Settings size={18} />} onClick={closeMenu} />
