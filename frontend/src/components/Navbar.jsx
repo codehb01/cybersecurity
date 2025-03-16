@@ -71,7 +71,7 @@ const Navbar = ({ user, setDarkMode, darkMode, handleLogout }) => {
 const NavLink = ({ href, label, icon }) => (
   <Link
     to={href}
-    className="flex items-center px-3 py-2 rounded-md text-sm font-medium transition-transform transform hover:scale-110 hover:shadow-md hover:shadow-blue-500/50 hover:shadow-purple-600/50 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+    className="flex items-center px-3 py-2 rounded-md text-sm font-medium transition-transform transform hover:scale-110 hover:shadow-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
   >
     {icon && <span className="mr-2">{icon}</span>}
     {label}
@@ -81,7 +81,7 @@ const NavLink = ({ href, label, icon }) => (
 const ThemeToggle = ({ darkMode, setDarkMode }) => (
   <button
     onClick={() => setDarkMode(!darkMode)}
-    className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:scale-110 hover:shadow-md hover:shadow-blue-500/50 hover:shadow-purple-600/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-transform"
+    className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:scale-110 hover:shadow-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-transform"
     aria-label="Toggle dark mode"
   >
     {darkMode ? <Sun size={20} /> : <Moon size={20} />}

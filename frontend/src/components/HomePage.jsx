@@ -1,27 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function HomePage() {
   // State to store user input from the search bar
   const [search, setSearch] = useState("");
 
   return (
-    // Main container with full-screen height, flex for centering, and a gradient background
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white px-6 relative overflow-hidden">
-      {/* Background Animation - Using CSS instead of Framer Motion */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-fadeIn" />
+    // Main container with full-screen height, flex for centering, and a dynamic gradient background
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white px-6 relative overflow-hidden">
+      {/* Background Animation */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-gradient" />
 
-      {/* Hero Section: Title - Using CSS animations */}
-      <h1 className="text-5xl font-extrabold text-center mb-4 tracking-wide animate-fadeInDown">
-        Cyber Threat & Web Security Platform
-      </h1>
+{/* Hero Section: Title with White Text, White Border & 50% Opacity */}
+<h1
+  className="text-5xl font-extrabold text-center mb-4 tracking-wide animate-fadeInDown"
+  style={{
+    color: "rgba(255, 255, 255, 0.5)", // White text with 50% opacity
+    //WebkitTextStroke: "1px rgba(255, 255, 255, 0.5)", // White border with 50% opacity
+  }}
+>
+  Cyber Threat & Web Security Platform
+</h1>
 
-      {/* Hero Section: Subtitle - Using CSS animations with delay */}
+
+
+      {/* Hero Section: Subtitle */}
       <p className="text-lg text-center mb-6 max-w-2xl text-gray-300 animate-fadeInUp animation-delay-300">
         Stay ahead of cyber threats with <strong>real-time security monitoring</strong>,
         <strong> AI-driven risk analysis</strong>, and <strong> automated protection</strong>.
       </p>
 
-      {/* Search Bar Container - Using CSS animations with longer delay */}
+      {/* Search Bar Container */}
       <div className="relative w-full max-w-xl animate-fadeInUp animation-delay-500">
         {/* Input Field */}
         <input
@@ -38,7 +46,7 @@ export default function HomePage() {
         </button>
       </div>
 
-      {/* CSS for animations - add this to your global CSS or use styled-jsx */}
+      {/* CSS for animations */}
       <style jsx>{`
         @keyframes fadeIn {
           from { opacity: 0; }
@@ -46,27 +54,21 @@ export default function HomePage() {
         }
         
         @keyframes fadeInDown {
-          from { 
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         
         @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-        
+
+        @keyframes gradientAnimation {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
         .animate-fadeIn {
           animation: fadeIn 2s forwards;
         }
@@ -78,7 +80,12 @@ export default function HomePage() {
         .animate-fadeInUp {
           animation: fadeInUp 0.8s forwards;
         }
-        
+
+        .animate-gradient {
+          animation: gradientAnimation 8s infinite linear;
+          background-size: 200% 200%;
+        }
+
         .animation-delay-300 {
           animation-delay: 0.3s;
         }
