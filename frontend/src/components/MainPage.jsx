@@ -1,0 +1,133 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { IoShieldCheckmark } from "react-icons/io5";
+import { motion } from "framer-motion";
+
+// Animation settings
+const fadeInUp = {
+  initial: { opacity: 0, y: -50 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8, ease: "easeOut" },
+};
+
+// Full-Screen Black Overlay (Prevents Flashing White Screen)
+const FullScreenOverlay = () => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsVisible(false), 800); // Hides overlay after 0.8s
+  }, []);
+
+  return (
+    isVisible && (
+      <motion.div
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="fixed top-0 left-0 w-full h-full bg-black z-50"
+      />
+    )
+  );
+};
+
+// Hero Section Component
+const HeroSection = () => (
+  <section className="bg-gradient-to-r from-blue-900 via-purple-900 to-gray-900 text-white text-center py-20 pt-28">
+    {/* Animated Heading */}
+    <motion.h1 {...fadeInUp} className="text-5xl font-bold mb-4">
+      Secure Your Digital World
+    </motion.h1>
+    
+    {/* Animated Description */}
+    <motion.p {...fadeInUp} transition={{ delay: 0.2 }} className="text-xl mb-8">
+      Comprehensive vulnerability scanning and threat intelligence at your fingertips.
+    </motion.p>
+
+    {/* Animated Button */}
+    <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
+      <Link
+        to="/Login"
+        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        Get Started
+      </Link>
+    </motion.div>
+  </section>
+);
+
+// Feature Card Component (with animation)
+const FeatureCard = ({ title, description, delay }) => (
+  <motion.div
+    initial={{ opacity: 0, y: -30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, delay }}
+    className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 transform transition-transform hover:scale-105 hover:shadow-xl"
+  >
+    <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{title}</h3>
+    <p className="text-gray-800 dark:text-gray-200">{description}</p>
+  </motion.div>
+);
+
+// Features Section Component
+const FeaturesSection = () => (
+  <section className="py-20 bg-gray-100 dark:bg-gray-900">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      {/* Animated "OUR FEATURES" Title */}
+      <motion.h2 
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="text-4xl font-bold text-center mb-12 text-white bg-gray-900 dark:bg-gray-800 p-4 rounded-lg shadow-lg flex items-center justify-center gap-2"
+      >
+        <IoShieldCheckmark className="text-blue-500 text-5xl" /> Our Features
+      </motion.h2>
+
+      {/* Features Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          { title: "Automated Vulnerability Scanning", description: "Our platform integrates multiple tools and APIs to perform comprehensive, automated vulnerability scanning." },
+          { title: "Real-Time Dashboard", description: "A real-time dashboard presents an overview of vulnerabilities, risk scores, and threat trends." },
+          { title: "OWASP ZAP Integration", description: "Automated web vulnerability scanning (SQLi, XSS, CSRF)." },
+          { title: "Nikto Integration", description: "Scans for server misconfigurations, directory traversal, and file inclusion." },
+          { title: "Nmap Integration", description: "Network scanning for open ports and service detection." },
+          { title: "SQLMap Integration", description: "Focused on detecting SQL Injection vulnerabilities." },
+          { title: "VirusTotal API Integration", description: "Provides reputation data and threat intelligence." },
+          { title: "Downloadable Reports", description: "Offers downloadable PDF/CSV reports for audit and compliance purposes." },
+        ].map((feature, index) => (
+          <FeatureCard key={index} title={feature.title} description={feature.description} delay={index * 0.1 + 0.4} />
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// Call-to-Action Component
+const CallToAction = () => (
+  <section className="bg-blue-600 text-white text-center py-16">
+    <h2 className="text-3xl font-bold mb-4">Ready to Secure Your Application?</h2>
+    <p className="text-lg mb-8">Sign up today and start protecting your digital assets with our comprehensive vulnerability scanning platform.</p>
+
+    {/* Animated Button */}
+    <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
+      <Link
+        to="/Login"
+        className="bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        Sign Up Now
+      </Link>
+    </motion.div>
+  </section>
+);
+
+// Main Page Component
+const MainPage = () => (
+  <div>
+    <FullScreenOverlay /> {/* Smooth black-to-visible transition */}
+    <HeroSection />
+    <FeaturesSection />
+    <CallToAction />
+  </div>
+);
+
+export default MainPage;
