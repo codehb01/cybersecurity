@@ -30,37 +30,45 @@ const FullScreenOverlay = () => {
   );
 };
 
-// Hero Section Component
 const HeroSection = () => (
-  <section className="relative bg-black text-white text-center py-20 pt-28">
+  <section className="relative bg-black text-white text-center min-h-screen flex flex-col items-center justify-center py-28">
     {/* Background Animation */}
     <div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-gradient" />
 
-    {/* Animated Heading */}
-    <motion.h1 {...fadeInUp} className="text-7xl font-bold mb-4">
+    {/* Animated Heading with Reduced Top Padding */}
+    <motion.h1 {...fadeInUp} className="text-7xl font-bold mb-4 pt-10">
       CyberX
     </motion.h1>
-    
-    {/* Animated Description */}
-    <motion.p {...fadeInUp} transition={{ delay: 0.2 }} className="text-xl mb-8">
+
+    {/* Animated Description with Reduced Top Padding */}
+    <motion.p {...fadeInUp} transition={{ delay: 0.2 }} className="text-xl mb-8 pt-2">
       Comprehensive vulnerability scanning and threat intelligence at your fingertips.
     </motion.p>
 
-    {/* Animated Button */}
-<motion.div {...fadeInUp} transition={{ delay: 0.4 }} className="relative z-10">
-  <Link
-    to="/Login"
-    className="bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-purple-400/30 hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 opacity-100"
-  >
-    Get Started
-  </Link>
-</motion.div>
+    {/* Centered and Enlarged Button */}
+    <motion.div {...fadeInUp} transition={{ delay: 0.4 }} className="relative z-10">
+      <div className="flex items-center justify-center">
+        <div className="relative group">
+          <button className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-110 active:scale-95">
+            <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <span className="relative z-10 block px-10 py-6 rounded-xl bg-gray-950">
+              <div className="relative z-10 flex items-center space-x-2">
+                <span className="transition-all duration-500 group-hover:translate-x-1">Let's get started</span>
+                <svg className="w-8 h-8 transition-transform duration-500 group-hover:translate-x-1" data-slot="icon" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path clipRule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" fillRule="evenodd" />
+                </svg>
+              </div>
+            </span>
+          </button>
+        </div>
+      </div>
+    </motion.div>
 
-{/* Gradient Background */}
-<div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-gradient z-0" />
- 
+    {/* Gradient Background */}
+    <div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-gradient z-0" />
   </section>
 );
+
 
 // Feature Card Component (with animation)
 const FeatureCard = ({ title, description, delay }) => (
@@ -77,7 +85,7 @@ const FeatureCard = ({ title, description, delay }) => (
 
 // Features Section Component
 const FeaturesSection = () => (
-  <section className="py-20 bg-gray-100 dark:bg-gray-900">
+  <section className="py-20 bg-gray-100 dark:bg-gray-900 rounded-tl-lg rounded-tr-lg">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       {/* Animated "OUR FEATURES" Title */}
@@ -109,7 +117,6 @@ const FeaturesSection = () => (
   </section>
 );
 
-// Call-to-Action Component
 const CallToAction = () => (
   <section className="bg-blue-600 text-white text-center py-16">
     <h2 className="text-3xl font-bold mb-4">Ready to Secure Your Application?</h2>
@@ -117,16 +124,28 @@ const CallToAction = () => (
 
     {/* Animated Button */}
     <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
-      <Link
-        to="/Login"
-        className="bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-102
-                  hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 shadow-md hover:shadow-lg hover:shadow-purple-400/30"
-      >
-        Sign Up Now
-      </Link>
+      <div className="flex items-center justify-center">
+        <div className="relative group">
+          <Link
+            to="/Login"
+            className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-110 active:scale-95"
+          >
+            <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <span className="relative z-10 block px-10 py-6 rounded-xl bg-gray-950">
+              <div className="relative z-10 flex items-center space-x-2">
+                <span className="transition-all duration-500 group-hover:translate-x-1">Sign Up Now</span>
+                <svg className="w-8 h-8 transition-transform duration-500 group-hover:translate-x-1" data-slot="icon" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path clipRule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" fillRule="evenodd" />
+                </svg>
+              </div>
+            </span>
+          </Link>
+        </div>
+      </div>
     </motion.div>
   </section>
 );
+
 
 // Main Page Component
 const MainPage = () => (
@@ -139,77 +158,3 @@ const MainPage = () => (
 );
 
 export default MainPage;
-
-<style jsx>{`
-  @keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .animate-gradient {
-    animation: gradientAnimation 8s infinite linear;
-    background-size: 200% 200%;
-  }
-
-  /* Hero Section Styles */
-  .hero-section {
-    background: linear-gradient(45deg, #ff6b81, #ff944d);
-    text-align: center;
-    color: white;
-    padding: 60px 0;
-    position: relative;
-  }
-
-  .hero-section h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-  }
-
-  .hero-section p {
-    font-size: 1.25rem;
-    margin-bottom: 30px;
-  }
-
-  /* Feature Card Styles */
-  .feature-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  }
-
-  .feature-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-  }
-
-  .feature-card p {
-    font-size: 1rem;
-    color: #555;
-  }
-
-  /* Call to Action Styles */
-  .cta-button {
-    padding: 15px 30px;
-    background: linear-gradient(90deg, #ff6b81, #ff944d);
-    color: white;
-    font-size: 1.25rem;
-    border-radius: 50px;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: background 0.3s ease;
-  }
-
-  .cta-button:hover {
-    background: linear-gradient(90deg, #ff944d, #ff6b81);
-  }
-`}</style>
