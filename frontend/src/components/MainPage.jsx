@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoShieldCheckmark } from "react-icons/io5";
 import { motion } from "framer-motion";
@@ -32,10 +32,13 @@ const FullScreenOverlay = () => {
 
 // Hero Section Component
 const HeroSection = () => (
-  <section className="bg-gradient-to-r from-blue-900 via-purple-900 to-gray-900 text-white text-center py-20 pt-28">
+  <section className="relative bg-black text-white text-center py-20 pt-28">
+    {/* Background Animation */}
+    <div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-gradient" />
+
     {/* Animated Heading */}
-    <motion.h1 {...fadeInUp} className="text-5xl font-bold mb-4">
-      Secure Your Digital World
+    <motion.h1 {...fadeInUp} className="text-7xl font-bold mb-4">
+      CyberX
     </motion.h1>
     
     {/* Animated Description */}
@@ -44,14 +47,18 @@ const HeroSection = () => (
     </motion.p>
 
     {/* Animated Button */}
-    <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
-      <Link
-        to="/Login"
-        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
-      >
-        Get Started
-      </Link>
-    </motion.div>
+<motion.div {...fadeInUp} transition={{ delay: 0.4 }} className="relative z-10">
+  <Link
+    to="/Login"
+    className="bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-purple-400/30 hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 opacity-100"
+  >
+    Get Started
+  </Link>
+</motion.div>
+
+{/* Gradient Background */}
+<div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-gradient z-0" />
+ 
   </section>
 );
 
@@ -85,7 +92,7 @@ const FeaturesSection = () => (
 
       {/* Features Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[
+        {[ 
           { title: "Automated Vulnerability Scanning", description: "Our platform integrates multiple tools and APIs to perform comprehensive, automated vulnerability scanning." },
           { title: "Real-Time Dashboard", description: "A real-time dashboard presents an overview of vulnerabilities, risk scores, and threat trends." },
           { title: "OWASP ZAP Integration", description: "Automated web vulnerability scanning (SQLi, XSS, CSRF)." },
@@ -112,7 +119,8 @@ const CallToAction = () => (
     <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
       <Link
         to="/Login"
-        className="bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+        className="bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-102
+                  hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 shadow-md hover:shadow-lg hover:shadow-purple-400/30"
       >
         Sign Up Now
       </Link>
@@ -131,3 +139,77 @@ const MainPage = () => (
 );
 
 export default MainPage;
+
+<style jsx>{`
+  @keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradient {
+    animation: gradientAnimation 8s infinite linear;
+    background-size: 200% 200%;
+  }
+
+  /* Hero Section Styles */
+  .hero-section {
+    background: linear-gradient(45deg, #ff6b81, #ff944d);
+    text-align: center;
+    color: white;
+    padding: 60px 0;
+    position: relative;
+  }
+
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .hero-section p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+  }
+
+  /* Feature Card Styles */
+  .feature-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .feature-card p {
+    font-size: 1rem;
+    color: #555;
+  }
+
+  /* Call to Action Styles */
+  .cta-button {
+    padding: 15px 30px;
+    background: linear-gradient(90deg, #ff6b81, #ff944d);
+    color: white;
+    font-size: 1.25rem;
+    border-radius: 50px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background: linear-gradient(90deg, #ff944d, #ff6b81);
+  }
+`}</style>
