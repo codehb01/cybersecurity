@@ -1,3 +1,99 @@
+
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
+// Components
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import LoginPage from "./components/LoginPage";
+import SignupPage from "./components/SignupPage";
+import MainPage from "./components/MainPage";
+import NotFound from "./pages/NotFound";
+import RedirectGoogleAuth from "./components/GoogleRedirectHandler";
+import { useAuth } from "./auth";
+
+// Placeholder components for protected routes
+const Search = () => <div className="p-6">Search Page Content</div>;
+const Settings = () => <div className="p-6">Settings Page Content</div>;
+const Profile = () => <div className="p-6">Profile Page Content</div>;
+
+const App = () => {
+  const { isAuthorized } = useAuth();
+
+  return (
+    <Router>
+      <MainContent isAuthorized={isAuthorized} />
+      <ToastContainer /> {/* To display notifications */}
+    </Router>
+  );
+};
+
+const MainContent = ({ isAuthorized }) => {
+  const location = useLocation();
+  const hideNavbar = location.pathname === "/";
+
+  return (
+    <div className="min-h-screen flex flex-col justify-between transition-colors duration-300">
+      {/* Conditionally render Navbar */}
+      {!hideNavbar && <Navbar />}
+
+      <div className="flex-grow">
+        <Routes>
+          {/* OAuth Callback */}
+          <Route path="/login/callback" element={<RedirectGoogleAuth />} />
+
+          {/* Public Routes */}
+          <Route path="/" element={<MainPage />} />
+          <Route
+            path="/login"
+            element={isAuthorized ? <Navigate to="/" replace /> : <LoginPage />}
+          />
+          <Route
+            path="/register"
+            element={
+              isAuthorized ? <Navigate to="/" replace /> : <SignupPage />
+            }
+          />
+
+          {/* Protected Routes - Redirect to Login if not authorized */}
+          <Route
+            path="/search"
+            element={
+              isAuthorized ? <Search /> : <Navigate to="/login" replace />
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              isAuthorized ? <Settings /> : <Navigate to="/login" replace />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              isAuthorized ? <Profile /> : <Navigate to="/login" replace />
+            }
+          />
+
+          {/* 404 Page */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default App;
+
 // import React, { useState, useEffect } from "react";
 // import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 
@@ -223,97 +319,3 @@
 // };
 
 // export default App;
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-
-// Components
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import LoginPage from "./components/LoginPage";
-import SignupPage from "./components/SignupPage";
-import MainPage from "./components/MainPage";
-import NotFound from "./pages/NotFound";
-import RedirectGoogleAuth from "./components/GoogleRedirectHandler";
-import { useAuth } from "./auth";
-
-// Placeholder components for protected routes
-const Search = () => <div className="p-6">Search Page Content</div>;
-const Settings = () => <div className="p-6">Settings Page Content</div>;
-const Profile = () => <div className="p-6">Profile Page Content</div>;
-
-const App = () => {
-  const { isAuthorized } = useAuth();
-
-  return (
-    <Router>
-      <MainContent isAuthorized={isAuthorized} />
-      <ToastContainer /> {/* To display notifications */}
-    </Router>
-  );
-};
-
-const MainContent = ({ isAuthorized }) => {
-  const location = useLocation();
-  const hideNavbar = location.pathname === "/";
-
-  return (
-    <div className="min-h-screen flex flex-col justify-between transition-colors duration-300">
-      {/* Conditionally render Navbar */}
-      {!hideNavbar && <Navbar />}
-
-      <div className="flex-grow">
-        <Routes>
-          {/* OAuth Callback */}
-          <Route path="/login/callback" element={<RedirectGoogleAuth />} />
-
-          {/* Public Routes */}
-          <Route path="/" element={<MainPage />} />
-          <Route
-            path="/login"
-            element={isAuthorized ? <Navigate to="/" replace /> : <LoginPage />}
-          />
-          <Route
-            path="/register"
-            element={
-              isAuthorized ? <Navigate to="/" replace /> : <SignupPage />
-            }
-          />
-
-          {/* Protected Routes - Redirect to Login if not authorized */}
-          <Route
-            path="/search"
-            element={
-              isAuthorized ? <Search /> : <Navigate to="/login" replace />
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              isAuthorized ? <Settings /> : <Navigate to="/login" replace />
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              isAuthorized ? <Profile /> : <Navigate to="/login" replace />
-            }
-          />
-
-          {/* 404 Page */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
-
-      <Footer />
-    </div>
-  );
-};
-
-export default App;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, X, Sun, Moon, Search, Home, Settings } from "lucide-react";
+import { Menu, X, Sun, Moon, User, Home, Settings } from "lucide-react";
 import { motion, useAnimation } from "framer-motion";
 
 const Navbar = ({ user, setDarkMode, darkMode, handleLogout }) => {
@@ -65,7 +65,7 @@ const Navbar = ({ user, setDarkMode, darkMode, handleLogout }) => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           <NavLink href="/" label="Home" icon={<Home size={18} />} />
-          <NavLink href="/search" label="Search" icon={<Search size={18} />} />
+          <NavLink href="/profile" label="Profile" icon={<User size={18} />} />
           <NavLink href="/settings" label="Settings" icon={<Settings size={18} />} />
         </div>
 
@@ -110,7 +110,7 @@ const Navbar = ({ user, setDarkMode, darkMode, handleLogout }) => {
           className="md:hidden mt-4 flex flex-col space-y-2 bg-white/50 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-700 backdrop-blur-lg rounded-lg p-4 shadow-md"
         >
           <NavLink href="/" label="Home" icon={<Home size={18} />} onClick={closeMenu} />
-          <NavLink href="/search" label="Search" icon={<Search size={18} />} onClick={closeMenu} />
+          <NavLink href="/profile" label="Profile" icon={<User size={18} />} onClick={closeMenu} />
           <NavLink href="/settings" label="Settings" icon={<Settings size={18} />} onClick={closeMenu} />
           {user ? (
             <button

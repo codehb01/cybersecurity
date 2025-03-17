@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion"; // Ensure framer-motion is installed
-import api from "../api"; // Ensure you have an API utility for requests
-import { GOOGLE_ACCESS_TOKEN } from "../token"; // Store Google token
-import google from "../assets/google.png"; // Google Icon
-import { useAuth } from "../auth"; // Import authentication context
+import { motion } from "framer-motion";
+import { useAuth } from "../auth";
+import { GOOGLE_ACCESS_TOKEN } from "../token";
+import google from "../assets/google.png";
+import Button from "../components/Button";
 
-const LoginPage = ({ onLogin }) => {
+const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { login } = useAuth(); // Get login function from auth context
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,11 +20,10 @@ const LoginPage = ({ onLogin }) => {
     setError(null);
 
     try {
-      // Send login request to backend
       const success = await login({ username, password });
 
       if (success) {
-        navigate("/dashboard", { replace: true });
+        navigate("/home", { replace: true });
       } else {
         setError("Login failed. Check credentials.");
       }
@@ -36,10 +35,8 @@ const LoginPage = ({ onLogin }) => {
     }
   };
 
-  // Handle Google Login
   const handleGoogleLogin = () => {
-    window.location.href =
-      "http://localhost:8000/accounts/google/login/?process=login";
+    window.location.href = "http://localhost:8000/accounts/google/login/?process=login";
   };
 
   useEffect(() => {
@@ -60,77 +57,132 @@ const LoginPage = ({ onLogin }) => {
   }, [navigate, login]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4"
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
-        className="w-full max-w-md bg-white dark:bg-gray-800 shadow-xl rounded-lg p-8"
-      >
-        <motion.h2
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: "easeOut", delay: 0.15 }}
-          className="text-2xl font-bold text-center text-gray-800 dark:text-white"
-        >
-          Login
-        </motion.h2>
+    <div className="min-h-screen flex items-center justify-center bg-black text-white px-4 pt-16 relative overflow-hidden">
+      {/* Background Animation */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-gradient" />
+      
+      <div className="w-full max-w-md bg-white/10 backdrop-blur-md dark:bg-gray-800/60 shadow-xl rounded-lg p-8 relative z-10 mt-8">
+        <h2 className="text-2xl font-bold text-center text-white dark:text-white animate-fadeInDown">Login</h2>
 
         {error && <div className="text-red-500 text-center mt-2">{error}</div>}
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          {/* Username Input - Slides in from Left */}
           <motion.input
             type="text"
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
-            className="w-full px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="w-full px-4 py-2 border rounded-lg bg-gray-100/80 dark:bg-gray-700/80 text-gray-800 dark:text-white focus:ring-2 focus:ring-gradient-to-r focus:from-blue-500 focus:to-purple-500 outline-none"
           />
+
+          {/* Password Input - Slides in from Right */}
           <motion.input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-2 border rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+            className="w-full px-4 py-2 border rounded-lg bg-gray-100/80 dark:bg-gray-700/80 text-gray-800 dark:text-white focus:ring-2 focus:ring-gradient-to-r focus:from-blue-500 focus:to-purple-500 outline-none"
           />
-          <button
-            type="submit"
-            className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105
-                     hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 shadow-md hover:shadow-lg hover:shadow-purple-400/30"
-          >
-            {loading ? "Logging in..." : "Login"}
-          </button>
+
+          {/* Updated Login Button with padding */}
+          <div className="px-32 mt-0 animate-fadeInUp animation-delay-300"> 
+            <Button onClick={handleSubmit} />
+          </div>
+
+          {/* Google Login Button - Centered with reduced width */}
+          <div className="flex justify-center animate-fadeInUp animation-delay-500">
+            <motion.button
+              type="button"
+              onClick={handleGoogleLogin}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 }}
+              whileHover={{ scale: 1.05 }}
+              className="w-3/5 flex items-center justify-center border rounded-lg py-2 px-4 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
+            >
+              <img src={google} alt="Google" className="w-5 h-5 mr-2" />
+              Login with Google
+            </motion.button>
+          </div>
         </form>
 
-        {/* Google Login Button */}
-        <button
-          type="button"
-          onClick={handleGoogleLogin}
-          className="w-full mt-4 flex items-center justify-center border rounded-lg py-2 px-4 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
-        >
-          <img src={google} alt="Google" className="w-5 h-5 mr-2" />
-          Login with Google
-        </button>
-
         {/* Navigation to Register */}
-        <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
+        <p className="mt-4 text-center text-gray-200 dark:text-gray-400 animate-fadeInUp animation-delay-700">
           Don't have an account?{" "}
-          <span
-            className="text-blue-500 cursor-pointer hover:underline"
-            onClick={() => navigate("/register")}
-          >
+          <span className="text-blue-400 cursor-pointer hover:underline" onClick={() => navigate("/register")}>
             Sign up
           </span>
         </p>
-      </motion.div>
-    </motion.div>
+      </div>
+
+      {/* CSS for animations */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes gradientAnimation {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 2s forwards;
+        }
+        
+        .animate-fadeInDown {
+          animation: fadeInDown 0.8s forwards;
+        }
+        
+        .animate-fadeInUp {
+          animation: fadeInUp 0.8s forwards;
+        }
+
+        .animate-gradient {
+          animation: gradientAnimation 8s infinite linear;
+          background-size: 200% 200%;
+        }
+
+        .animation-delay-300 {
+          animation-delay: 0.3s;
+        }
+        
+        .animation-delay-500 {
+          animation-delay: 0.5s;
+        }
+        
+        .animation-delay-700 {
+          animation-delay: 0.7s;
+        }
+        
+        /* Custom gradient focus ring */
+        input:focus {
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5), 0 0 0 3px rgba(168, 85, 247, 0.5);
+          border-color: transparent;
+        }
+      `}</style>
+    </div>
   );
 };
 
