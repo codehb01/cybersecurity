@@ -51,10 +51,10 @@ const HeroSection = () => (
         <div className="relative group">
           <Link
             to="/Login" // Link to the login page
-            className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-110 active:scale-95"
+            className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-120 active:scale-100"
           >
-            <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <span className="relative z-10 block px-10 py-6 rounded-xl bg-gray-950">
+            <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[4px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <span className="relative z-10 block px-8 py-3 rounded-xl bg-gray-950">
               <div className="relative z-10 flex items-center space-x-2">
                 <span className="transition-all duration-500 group-hover:translate-x-1">Let's get started</span>
                 <svg className="w-8 h-8 transition-transform duration-500 group-hover:translate-x-1" data-slot="icon" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -131,10 +131,10 @@ const CallToAction = () => (
         <div className="relative group">
           <Link
             to="/Login"
-            className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-110 active:scale-95"
+            className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-120 active:scale-100"
           >
             <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <span className="relative z-10 block px-10 py-6 rounded-xl bg-gray-950">
+            <span className="relative z-10 block px-8 py-3 rounded-xl bg-gray-950">
               <div className="relative z-10 flex items-center space-x-2">
                 <span className="transition-all duration-500 group-hover:translate-x-1">Sign Up Now</span>
                 <svg className="w-8 h-8 transition-transform duration-500 group-hover:translate-x-1" data-slot="icon" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
