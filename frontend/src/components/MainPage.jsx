@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoShieldCheckmark } from "react-icons/io5";
 import { motion } from "framer-motion";
+import cyberLogo from '../assets/cybersecurity-logo.gif';
 
 // Animation settings
 const fadeInUp = {
@@ -35,8 +36,20 @@ const HeroSection = () => (
     {/* Background Animation */}
     <div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-gradient" />
 
+    {/* Large Cyber Security Logo */}
+    <motion.div 
+      {...fadeInUp}
+      className="flex justify-center mb-8"
+    >
+      <img 
+        src={cyberLogo}
+        alt="Cyber Security Logo"
+        className="w-40 h-40 object-contain animate-pulse"
+      />
+    </motion.div>
+
     {/* Animated Heading with Padding */}
-    <motion.h1 {...fadeInUp} className="text-7xl font-bold mb-4 pt-20">
+    <motion.h1 {...fadeInUp} className="text-7xl font-bold mb-4 pt-4">
       CyberX
     </motion.h1>
     
@@ -50,7 +63,7 @@ const HeroSection = () => (
       <div className="flex items-center justify-center">
         <div className="relative group">
           <Link
-            to="/Login" // Link to the login page
+            to="/Login"
             className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-120 active:scale-100"
           >
             <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[4px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -71,7 +84,6 @@ const HeroSection = () => (
     <div className="absolute inset-0 bg-[radial-gradient(circle,#8E24AA,#2196F3)] opacity-50 animate-gradient z-0" />
   </section>
 );
-
 
 // Feature Card Component (with animation)
 const FeatureCard = ({ title, description, delay }) => (
