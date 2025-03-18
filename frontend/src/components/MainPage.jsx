@@ -85,16 +85,23 @@ const HeroSection = () => (
   </section>
 );
 
-// Feature Card Component (with animation)
 const FeatureCard = ({ title, description, delay }) => (
   <motion.div
     initial={{ opacity: 0, y: -30 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.8, delay }}
-    className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 transform transition-transform hover:scale-105 hover:shadow-xl"
+    className="relative bg-gray-900 bg-opacity-50 backdrop-blur-md shadow-xl rounded-xl p-6 border border-transparent transition-all duration-300 hover:scale-105 hover:border-blue-500/50 hover:shadow-blue-500/30"
   >
-    <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{title}</h3>
-    <p className="text-gray-800 dark:text-gray-200">{description}</p>
+    {/* Gradient Overlay for Hover Effect */}
+    <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-500 opacity-0 transition-opacity duration-300 hover:opacity-20 rounded-xl" />
+
+    {/* Card Content */}
+    <h3 className="text-2xl font-bold mb-3 text-white">{title}</h3>
+    <p className="text-gray-300">{description}</p>
+
+    {/* Floating Glow Effect */}
+    <div className="absolute -top-4 -left-4 w-16 h-16 bg-blue-500 opacity-20 blur-2xl" />
+    <div className="absolute bottom-4 right-4 w-10 h-10 bg-purple-500 opacity-30 blur-2xl" />
   </motion.div>
 );
 
@@ -132,10 +139,26 @@ const FeaturesSection = () => (
   </section>
 );
 
+// Hover animation
+const buttonHover = {
+  scale: 1.05,
+  boxShadow: "0px 4px 20px rgba(0, 255, 255, 0.6)",
+  transition: { duration: 0.3, ease: "easeInOut" },
+};
+
+// CTA Component
 const CallToAction = () => (
-  <section className="bg-blue-600 text-white text-center py-16">
-    <h2 className="text-3xl font-bold mb-4">Ready to Secure Your Application?</h2>
-    <p className="text-lg mb-8">Sign up today and start protecting your digital assets with our comprehensive vulnerability scanning platform.</p>
+  <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-800 to-purple-900 text-white text-center py-20">
+    {/* Background Glow Effect */}
+    <div className="absolute inset-0 bg-gradient-to-tl from-blue-500 via-transparent to-purple-700 opacity-30 blur-3xl" />
+
+    {/* Heading */}
+    <h2 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-wide">
+      Ready to Secure Your Application?
+    </h2>
+    <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 opacity-90">
+      Sign up today and start protecting your digital assets with our comprehensive vulnerability scanning platform.
+    </p>
 
     {/* Animated Button */}
     <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
@@ -158,6 +181,10 @@ const CallToAction = () => (
         </div>
       </div>
     </motion.div>
+
+    {/* Floating Neon Lights */}
+    <div className="absolute top-10 left-10 w-16 h-16 bg-blue-500 opacity-20 blur-2xl rounded-full animate-pulse" />
+    <div className="absolute bottom-10 right-10 w-20 h-20 bg-purple-500 opacity-25 blur-3xl rounded-full animate-pulse" />
   </section>
 );
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = ({ onClick }) => {
+const Button = ({ onClick, text }) => {
   return (
     <StyledWrapper>
       <button className="cssbuttons-io-button" onClick={onClick}>
-        Login
+        {text}
         <div className="icon">
           <svg height={24} width={24} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 0h24v24H0z" fill="none" />
@@ -17,19 +17,21 @@ const Button = ({ onClick }) => {
   );
 };
 
-// ✅ Ensure that we are using a **default export**
 export default Button;
 
 const StyledWrapper = styled.div`
+  display: flex;
+  margin-left: -53px;
+  width: 182%;
+
   .cssbuttons-io-button {
-    background: linear-gradient(to right, #3b82f6, #9333ea);;
+    background: linear-gradient(to right, #3b82f6, #9333ea);
     color: white;
     font-family: inherit;
-    padding: 0.35em;
-    padding-left: 1.2em;
-    font-size: 17px;
-    font-weight: 500;
-    border-radius: 0.9em;
+    padding: 0.6em 1.5em;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 15px;
     border: none;
     letter-spacing: 0.05em;
     display: flex;
@@ -37,9 +39,13 @@ const StyledWrapper = styled.div`
     box-shadow: inset 0 0 1.6em -0.6em #714da6;
     overflow: hidden;
     position: relative;
-    height: 2.8em;
-    padding-right: 3.3em;
+    height: 2.5em;
+    width: 280px; /* Increased width */
+    max-width: 100%;
+    padding-right: 4em;
     cursor: pointer;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
   }
 
   .cssbuttons-io-button .icon {
@@ -49,8 +55,8 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 2.2em;
-    width: 2.2em;
+    height: 2.0em;
+    width: 2.6em;
     border-radius: 0.7em;
     box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
     right: 0.3em;
@@ -62,7 +68,7 @@ const StyledWrapper = styled.div`
   }
 
   .cssbuttons-io-button .icon svg {
-    width: 1.1em;
+    width: 1.2em;
     transition: transform 0.3s;
     color: #7b52b9;
   }

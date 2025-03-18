@@ -95,7 +95,8 @@ const LoginPage = () => {
 
           {/* Updated Login Button with padding */}
           <div className="px-32 mt-0 animate-fadeInUp animation-delay-300"> 
-            <Button onClick={handleSubmit} />
+          <Button onClick={handleSubmit} text="Login" />
+
           </div>
 
           {/* Google Login Button - Centered with reduced width */}
