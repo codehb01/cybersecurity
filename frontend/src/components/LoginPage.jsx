@@ -125,7 +125,7 @@ const LoginPage = () => {
         </p>
       </div>
 
-      {/* CSS for animations */}
+      {/* CSS for Animations */}
       <style jsx>{`
         @keyframes fadeIn {
           from { opacity: 0; }
